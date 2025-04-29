@@ -41,9 +41,7 @@ func convertValue(json []byte, fd protoreflect.FieldDescriptor, v protoreflect.V
 func convertList(json []byte, fd protoreflect.FieldDescriptor, list protoreflect.List) []byte {
 	for i := 0; i < list.Len(); i++ {
 		item := list.Get(i)
-		if err := convertSingular(json, fd, item); err != nil {
-			return err
-		}
+		json = convertSingular(json, fd, item)
 	}
 	return json
 }
